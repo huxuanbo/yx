@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/semantic/dist/semantic.min.css">
+    <script src="/node_modules/art-template/lib/template-web.js"></script>
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <!-- semantic 文件依赖jquery -->
+    <script src="/semantic/dist/semantic.min.js"></script>
+    <script src="./index.js"></script>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <h1>英雄列表</h1>
+    <button class="ui primary button" id="add">添加英雄</button>
+
+    <div class="ui tiny modal">
+        <i class="close icon"></i>
+        <div class="header">
+            添加英雄信息
+        </div>
+        <div class="content">
+            <form class="ui form" id="userInfo">
+                <div class="field">
+                    <label>名称：</label>
+                    <input type="text" name="name" placeholder="姓">
+                </div>
+                <div class="field">
+                    <label>性别：</label>
+                    <select name='gender' class="ui fluid dropdown">
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+
+        <div class="actions">
+            <div class="ui black deny button">
+                取消
+            </div>
+            <div class="ui positive right button uplode" id="addBtn">
+                添加
+            </div>
+        </div>
+    </div>
+
+
+    <table class="ui celled striped blue table">
+        <thead>
+            <tr>
+                <th>编号</th>
+                <th>英雄名称</th>
+                <th>性别</th>
+                <th>创建时间</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody id="tbd"></tbody>
+    </table>
+    <script type="text/template" id="rows">
+        {{ each data val }}
+            <tr>
+                <td>
+                    <div class="ui ribbon label {{ val.isdel ? 'red' : 'blue' }}">
+                        {{ val.isdel ? '删除' : '正常' }}
+                    </div>
+                    {{ val.id }}
+                </td>
+                <td class="name">{{ val.name }}</td>
+                <td class="gender">{{ val.gender }}</td>
+                <td>{{ val.ctime }}</td>
+                <td data-value="{{ val.id }}">
+                    <a href="javascript:;" class="edit">编辑</a>
+                    <a href="javascript:;"  class="del">删除</a>
+                </td>
+            </tr>
+        {{ /each }}
+    </script>
+</body>
+
+</html>
